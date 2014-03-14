@@ -6,15 +6,19 @@
 </head>
 <body>
 
-<input type="file"/>
-<form enctype="multipart/form-data" action="" method="POST">
+<form id="fileform" enctype="multipart/form-data" action="{% url 'videoPost' %}" method="POST">
+    <input type="file" id="f" name="file"/>
+</form>
+
+<form id="timeform" enctype="multipart/form-data" action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit"/>Time It!</input>
 </form>
+<progress min="0" max="100" value="0">0% complete</progress>
 
 {% if time_took %}
-    <h3>It took {{ time_took }} to upload that.</h3>
+    <h3>It took {{ time_took }} seconds to upload that.</h3>
 {% endif %}
 
 <script type="text/javascript">
@@ -25,23 +29,74 @@
         uploadFile= this.files[0];
     });
 
+    function upload(blobOrFile) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '{% url 'videoPost' %}', true);
+        xhr.onload = function(e) {  };
+
+        // Listen to the upload progress.
+        var progressBar = document.querySelector('progress');
+        xhr.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+                progressBar.value = (e.loaded / e.total) * 100;
+                progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.
+            }
+        };
+
+        xhr.send(blobOrFile);
+    }
+
+    function sendFile(){
+        var form = $('#fileform').get(0);
+        var formData = new FormData(form);
+        var file = $('#f').get(0).files[0];
+        var xhr = new XMLHttpRequest();
+        formData.append('myfile', file);
+        xhr.open('POST', '{% url 'videoPost' %}', false);
+        // Listen to the upload progress.
+        var progressBar = document.querySelector('progress');
+        xhr.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+                progressBar.value = (e.loaded / e.total) * 100;
+                progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.
+            }
+        };
+        startTime = Date.now();
+
+        xhr.onreadystatechange = function(){
+                            if (this.readyState == 4){
+                                if(( this.status >=200 && this.status < 300 ) || this.status == 304){
+                                    $('#id_time').val((Date.now() - startTime)/1000);
+                                    $('#timeform').submit();
+                                }
+                            }
+                        }
+
+        xhr.send(formData);
+
+    }
+
         $('input[type=submit]').click(function(e) {
             e.preventDefault();
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '{% url 'videoPost' %}', true);
-            xhr.setRequestHeader('accept', 'application/json');
-            xhr.setRequestHeader('access-control-allow-origin', '*');
-            xhr.setRequestHeader('content-type', 'video/mp4');
-            starTime = Date.now();
-            xhr.send(uploadFile);
-            xhr.onreadystatechange = function(){
-                if (this.readyState == 4){
-                    if(( this.status >=200 && this.status < 300 ) || this.status == 304){
-                        $('#id_time').val((Date.now() - startTime)/1000);
-                        $('form').submit();
-                    }
-                }
-            }
+            sendFile();
+{#            upload(uploadFile);#}
+{#            var xhr = new XMLHttpRequest();#}
+{#            xhr.open('POST', '{% url 'videoPost' %}', true);#}
+{#            xhr.setRequestHeader('accept', 'application/json');#}
+{#            xhr.setRequestHeader('access-control-allow-origin', '*');#}
+{#            xhr.setRequestHeader('content-type', 'video/mp4');#}
+{#            starTime = Date.now();#}
+{#            var formData = new FormData();#}
+{#            formData.append("thefile", uploadFile);#}
+{#            xhr.send(formData);#}
+{#            xhr.onreadystatechange = function(){#}
+{#                if (this.readyState == 4){#}
+{#                    if(( this.status >=200 && this.status < 300 ) || this.status == 304){#}
+{#                        $('#id_time').val((Date.now() - startTime)/1000);#}
+{#                        $('#timeform').submit();#}
+{#                    }#}
+{#                }#}
+{#            }#}
         });
 
 </script>
