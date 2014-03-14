@@ -54,13 +54,13 @@
         formData.append('myfile', file);
         xhr.open('POST', '{% url 'videoPost' %}', false);
         // Listen to the upload progress.
-        var progressBar = document.querySelector('progress');
-        xhr.upload.onprogress = function(e) {
-            if (e.lengthComputable) {
-                progressBar.value = (e.loaded / e.total) * 100;
-                progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.
-            }
-        };
+{#        var progressBar = document.querySelector('progress');#}
+{#        xhr.upload.onprogress = function(e) {#}
+{#            if (e.lengthComputable) {#}
+{#                progressBar.value = (e.loaded / e.total) * 100;#}
+{#                progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.#}
+{#            }#}
+{#        };#}
         startTime = Date.now();
 
         xhr.onreadystatechange = function(){

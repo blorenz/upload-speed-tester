@@ -5,8 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 def home(request):
     time_took = None
     if request.POST:
-        form = UploadForm(request.POST, request.FILES)
-        time_took = form.cleaned_data['time']
+        form = UploadForm(request.POST)
+        if form.is_valid():
+            time_took = form.cleaned_data['time']
     else:
         form = UploadForm()
 
