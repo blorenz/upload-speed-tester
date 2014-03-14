@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+<input type="file"/>
+<form enctype="multipart/form-data" action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"/>Time It!</input>
+</form>
+
+{% if time_took %}
+    <h3>It took {{ time_took }} to upload that.</h3>
+{% endif %}
+
+<script type="text/javascript">
+    var uploadFile;
+    var startTime;
+
+    $(':file').change(function(){
+        uploadFile= this.files[0];
+    });
+
+        $('input[type=submit]').click(function(e) {
+            e.preventDefault();
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '{% url 'videoPost' %}', true);
+            xhr.setRequestHeader('accept', 'application/json');
+            xhr.setRequestHeader('access-control-allow-origin', '*');
+            xhr.setRequestHeader('content-type', 'video/mp4');
+            starTime = Date.now();
+            xhr.send(uploadFile);
+            xhr.onreadystatechange = function(){
+                if (this.readyState == 4){
+                    if(( this.status >=200 && this.status < 300 ) || this.status == 304){
+                        $('#id_time').val((Date.now() - startTime)/1000);
+                        $('form').submit();
+                    }
+                }
+            }
+        });
+
+</script>
+</body>
+</html>
