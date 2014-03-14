@@ -18,7 +18,7 @@
 <progress min="0" max="100" value="0">0% complete</progress>
 
 {% if time_took %}
-    <h3>It took {{ time_took }} seconds to upload that.</h3>
+    <h3>It took {{ time_took }} seconds to upload {{ size }}.</h3>
 {% endif %}
 
 <script type="text/javascript">
@@ -50,6 +50,8 @@
         var form = $('#fileform').get(0);
         var formData = new FormData(form);
         var file = $('#f').get(0).files[0];
+
+        $('#id_size').val(file.size);
         var xhr = new XMLHttpRequest();
         formData.append('myfile', file);
         xhr.open('POST', '{% url 'videoPost' %}', false);
