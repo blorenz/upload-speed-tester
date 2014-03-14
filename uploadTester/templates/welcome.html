@@ -63,6 +63,15 @@
 {#                progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.#}
 {#            }#}
 {#        };#}
+
+        xhr.upload.onprogress = function(evt)
+        {
+            if (evt.lengthComputable)
+            {
+                var percentComplete = parseInt((evt.loaded / evt.total) * 100);
+                console.log("Upload: " + percentComplete + "% complete")
+            }
+        };
         startTime = Date.now();
 
         xhr.onreadystatechange = function(){

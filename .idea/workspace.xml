@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5816d87c-f8f6-4e68-a146-4f7e25e34604" name="Default" comment="Go">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uploadTester/forms.py" afterPath="$PROJECT_DIR$/uploadTester/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uploadTester/views.py" afterPath="$PROJECT_DIR$/uploadTester/views.py" />
+    <list default="true" id="5816d87c-f8f6-4e68-a146-4f7e25e34604" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uploadTester/templates/welcome.html" afterPath="$PROJECT_DIR$/uploadTester/templates/welcome.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -15,7 +13,7 @@
     <file path="/settings.py" changelist="5816d87c-f8f6-4e68-a146-4f7e25e34604" time="1394821282148" ignored="false" />
     <file path="/dummy.xml" changelist="5816d87c-f8f6-4e68-a146-4f7e25e34604" time="1394821502492" ignored="false" />
     <file path="/urls.py" changelist="5816d87c-f8f6-4e68-a146-4f7e25e34604" time="1394822133568" ignored="false" />
-    <file path="/Dummy.txt" changelist="5816d87c-f8f6-4e68-a146-4f7e25e34604" time="1394825429516" ignored="false" />
+    <file path="/Dummy.txt" changelist="5816d87c-f8f6-4e68-a146-4f7e25e34604" time="1394825838174" ignored="false" />
     <file path="/fragment.py" changelist="5816d87c-f8f6-4e68-a146-4f7e25e34604" time="1394824900647" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,10 +75,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/uploadTester/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="704" selection-end="704" vertical-scroll-proportion="0.35445204">
+            <state line="46" column="12" selection-start="1155" selection-end="1155" vertical-scroll-proportion="-7.7818184">
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -117,10 +115,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="welcome.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/uploadTester/templates/welcome.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="40" selection-start="350" selection-end="350" vertical-scroll-proportion="-2.025974">
+            <state line="73" column="10" selection-start="2395" selection-end="2395" vertical-scroll-proportion="0.90213525">
               <folding />
             </state>
           </provider>
@@ -157,8 +155,8 @@
         <option value="$PROJECT_DIR$/uploadTester/settings.py" />
         <option value="$PROJECT_DIR$/uploadTester/urls.py" />
         <option value="$PROJECT_DIR$/uploadTester/forms.py" />
-        <option value="$PROJECT_DIR$/uploadTester/templates/welcome.html" />
         <option value="$PROJECT_DIR$/uploadTester/views.py" />
+        <option value="$PROJECT_DIR$/uploadTester/templates/welcome.html" />
       </list>
     </option>
   </component>
@@ -546,19 +544,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/uploadTester/templates/welcome.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="40" selection-start="350" selection-end="350" vertical-scroll-proportion="-2.025974">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/uploadTester/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="704" selection-end="704" vertical-scroll-proportion="0.35445204">
+        <state line="46" column="12" selection-start="1155" selection-end="1155" vertical-scroll-proportion="-7.7818184">
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploadTester/templates/welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="10" selection-start="2395" selection-end="2395" vertical-scroll-proportion="0.90213525">
+          <folding />
         </state>
       </provider>
     </entry>
