@@ -74,10 +74,12 @@
 
         xhr.upload.onprogress = function(evt)
         {
+                    var progressBar = document.querySelector('progress');
             if (evt.lengthComputable)
             {
                 var percentComplete = parseInt((evt.loaded / evt.total) * 100);
-                console.log("Upload: " + percentComplete + "% complete")
+                progressBar.value = percentComplete;
+                progressBar.textContent = progressBar.value; // Fallback for unsupported browsers.
             }
         };
         startTime = Date.now();
