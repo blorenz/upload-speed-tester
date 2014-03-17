@@ -62,7 +62,7 @@
         $('#id_size').val(file.size);
         var xhr = new XMLHttpRequest();
         formData.append('myfile', file);
-        xhr.open('POST', '{% url 'videoPost' %}', false);
+        xhr.open('POST', '{% url 'videoPost' %}', true);
         // Listen to the upload progress.
 {#        var progressBar = document.querySelector('progress');#}
 {#        xhr.upload.onprogress = function(e) {#}
