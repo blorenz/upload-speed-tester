@@ -14,6 +14,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit"/>Time It!</input>
+    <div id="uploading"></div>
 </form>
 <progress min="0" max="100" value="0">0% complete</progress>
 
@@ -78,6 +79,7 @@
                             if (this.readyState == 4){
                                 if(( this.status >=200 && this.status < 300 ) || this.status == 304){
                                     $('#id_time').val((Date.now() - startTime)/1000);
+                                    $('#uploading').html('');
                                     $('#timeform').submit();
                                 }
                             }
@@ -89,6 +91,7 @@
 
         $('input[type=submit]').click(function(e) {
             e.preventDefault();
+            $('#uploading').html('Uploading please wait...');
             sendFile();
 {#            upload(uploadFile);#}
 {#            var xhr = new XMLHttpRequest();#}
