@@ -20,8 +20,10 @@
 <form id="timeform" enctype="multipart/form-data" action="{% url 'form_submit' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
+    <br/>
+    <br/>
     <input type="submit"/>Time It!</input>
-    <div id="uploading"></div>
+    <h2 id="uploading"></h2>
 </form>
 <progress min="0" max="100" value="0">0% complete</progress>
 
@@ -55,6 +57,7 @@
         var form = $('#fileform').get(0);
         var formData = new FormData(form);
         var file = $('#f').get(0).files[0];
+        $('#uploading').text('Uploading please wait...');
 
         $('#id_size').val(file.size);
         var xhr = new XMLHttpRequest();
@@ -83,7 +86,6 @@
                             if (this.readyState == 4){
                                 if(( this.status >=200 && this.status < 300 ) || this.status == 304){
                                     $('#id_time').val((Date.now() - startTime)/1000);
-                                    $('#uploading').html('');
                                     $('#timeform').submit();
                                 }
                             }
@@ -95,7 +97,7 @@
 
         $('input[type=submit]').click(function(e) {
             e.preventDefault();
-            $('#uploading').html('Uploading please wait...');
+
             sendFile();
 {#            upload(uploadFile);#}
 {#            var xhr = new XMLHttpRequest();#}
