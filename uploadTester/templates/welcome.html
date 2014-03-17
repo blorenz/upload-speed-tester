@@ -6,11 +6,18 @@
 </head>
 <body>
 
+{% if messages %}
+        {% for message in messages %}
+            <h3{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <form id="fileform" enctype="multipart/form-data" action="{% url 'videoPost' %}" method="POST">
     <input type="file" id="f" name="file"/>
 </form>
 
-<form id="timeform" enctype="multipart/form-data" action="" method="POST">
+<form id="timeform" enctype="multipart/form-data" action="{% url 'form_submit' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit"/>Time It!</input>
@@ -18,9 +25,6 @@
 </form>
 <progress min="0" max="100" value="0">0% complete</progress>
 
-{% if time_took %}
-    <h3>It took {{ time_took }} seconds to upload {{ size }}.</h3>
-{% endif %}
 
 <script type="text/javascript">
     var uploadFile;

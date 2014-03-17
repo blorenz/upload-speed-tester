@@ -2,7 +2,7 @@ from __future__ import division
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import UploadForm
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib import messages
 
 def humanize_bytes(bytes, precision=1):
     """Return a humanized string representation of a number of bytes.
@@ -28,6 +28,11 @@ def humanize_bytes(bytes, precision=1):
     return '%.*f %s' % (precision, bytes / factor, suffix)
 
 def home(request):
+    form = UploadForm()
+    return render(request, "welcome.html", { "form": form })
+
+
+def form_submit(request):
     time_took = None
     size = None
     if request.POST:
@@ -36,10 +41,8 @@ def home(request):
             time_took = form.cleaned_data['time']
             size = form.cleaned_data['size']
             size = humanize_bytes(long(size))
-    else:
-        form = UploadForm()
-
-    return render(request, "welcome.html", { "form": form, "time_took": time_took, "size": size})
+            messages.add_message(request, messages.INFO,'It took %s seconds to upload %s.' % (time_took, size) )
+    return redirect('home')
 
 
 import json
